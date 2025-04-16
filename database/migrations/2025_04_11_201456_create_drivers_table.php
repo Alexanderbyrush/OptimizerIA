@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_usuario')->unique();
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users');
+            $table->string('nombre');
+            $table->string('version');
+            $table->timestamp('fecha_instalacion');
+            $table->enum('estado', ['Actualizado', 'Obsoleto'])->default('actualizado');
         });
     }
 

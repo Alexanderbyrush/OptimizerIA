@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_usuario')->unique();
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users');
+            $table->string('tipo');
+            $table->text('mensaje');
+            $table->timestamp('fecha');
+            $table->enum('estado', ['Pendiente', 'Leida'])->default('pendiente');
         });
     }
 

@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('optimization_reports', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_usuario')->unique();
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users');
+            $table->timestamp('fecha');
+            $table->decimal('impacto_limpieza');
+            $table->text('detalles');
         });
     }
 
