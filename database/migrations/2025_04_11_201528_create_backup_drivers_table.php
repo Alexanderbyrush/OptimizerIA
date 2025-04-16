@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('backup_drivers', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->timestamp('fecha');
+            $table->unsignedBigInteger('id_usuario')->unique();
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users');
+
+            $table->unsignedBigInteger('id_driver')->unique();
+            $table->foreign('id_driver')
+                ->references('id')
+                ->on('drivers');
         });
     }
 

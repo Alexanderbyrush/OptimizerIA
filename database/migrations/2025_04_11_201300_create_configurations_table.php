@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('configurations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_usuario')->unique();
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users');
+            $table->longText('vista_panel');
+            $table->longText('accesos_directos');
+            $table->integer('frecuencia_actualizacion');
         });
     }
 

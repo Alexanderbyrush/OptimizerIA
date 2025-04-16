@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('performance_histories', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_usuario')->unique();
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users');
+            $table->timestamp('fecha');
+            $table->decimal('vista_panel');
+            $table->decimal('uso_RAM');
+            $table->decimal('espacio_disco');
         });
     }
 

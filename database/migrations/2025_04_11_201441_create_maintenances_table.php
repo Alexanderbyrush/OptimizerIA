@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('maintenances', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->unsignedBigInteger('id_usuario')->unique();
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users');
+            $table->string('tipo');
+            $table->dateTime('fecha_programada');
+            $table->enum('estado', ['Pendiente', 'Completado'])->default('pendiente');
         });
     }
 
