@@ -46,7 +46,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function configurations(){
+    public function configuration(){
         return $this->hasOne(Configuration::Class);
     }
 
@@ -54,7 +54,7 @@ class User extends Authenticatable
         return $this->hasMany(PerformanceHistory::Class);
     }
 
-    public function notification(){
+    public function notifications(){
         return $this->hasMany(Notification::Class);
     }
 
@@ -70,7 +70,7 @@ class User extends Authenticatable
         return $this->hasMany(BackupDriver::Class);
     }
 
-    public function optimizationReport(){
+    public function optimizationReports(){
         return $this->hasMany(OptimizationReport::Class);
     }
 
